@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.io Simple Example</title>
+  </head>
+  <body>
+    <div id="light">Unknown</div>
+    <button id="toggleButton">Toggle</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+       var socket = io();
+       $('#toggleButton').on('click', function() {
+         socket.emit('toggle', {state:true});
+       });
+       socket.on('light', function(light) {
+         console.log(light);
+         if  (light.state) {
+          $('#light').text('ON');
+         }
+         else {
+          $('#light').text('off'); 
+         }
+        });
+    </script>
+  </body>
+</html>
+
